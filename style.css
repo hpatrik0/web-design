@@ -10,7 +10,8 @@ body {
     border-top: 2px solid black;
     display: block;
     margin: 0;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     background-color: tomato;
     text-align: center;
@@ -144,20 +145,25 @@ body {
 }
 
 .autor-grid {
-    background-color: tomato;
     max-width: 800px;
-    margin: 10px auto;
+    margin: 30px auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 kolone, po "1fr" zauzetog mesta */
 }
 
+.autor label {
+    padding: 10px;
+    display: block;
+    background-color: tomato;
+}
+
 .autor {
-  padding: 10px;
+  padding: 0px;
   border: 1px solid black;
   outline: 0;
 }
 
-.autor:hover {
+.autor:hover label {
     background-color: rgb(213, 64, 38);
 }
 
