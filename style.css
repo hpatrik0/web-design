@@ -172,3 +172,34 @@ body {
     text-align: center;
     text-decoration: none;
 }
+
+.admin-lista {
+    max-width: 80%;
+    margin: 10px auto;
+    background-color: black;
+    table-layout: fixed;
+}
+
+.list-head {
+    background-color: tomato;
+}
+
+.list-head th {
+    padding: 10px;
+}
+
+.table-element {
+    background-color: antiquewhite;
+    font-size: 14px;
+}
+
+.table-element td {
+    text-align: center;
+}
+
+.admin-bio {
+    display: block;
+    height: 50px;
+    overflow-y: auto;
+}
+
