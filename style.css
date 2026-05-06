@@ -207,6 +207,7 @@ body {
     max-width: 80%;
     margin: 10px auto;
     border: 1px solid black;
+    background-color: antiquewhite;
 }
 
 .admin-forma p {
