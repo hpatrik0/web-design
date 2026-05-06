@@ -1,0 +1,88 @@
+body {
+    margin: 0px;
+}
+.navbar {
+    background-color: hsl(0, 100%, 50%);
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: inline-flex;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    background-color: hsl(0, 100%, 40%);
+}
+
+.navbar li {
+    float: left;
+}
+
+.title {
+    border-top: 2px solid black;
+    display: block;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    background-color: tomato;
+    text-align: center;
+}
+.table {
+    float: left;
+    font-size: 24;
+    margin: 10px;
+    border: 1px solid black;
+    background-color: whitesmoke;
+}
+
+.tablePicture {
+    border-bottom: 1px solid black;
+    display: flex;
+    padding-bottom: 10px;
+    margin: 15 auto;
+
+}
+.booklist {
+    list-style-position: outside;
+    list-style-type: square;
+}
+.booklist li{
+    border: 1px solid black;
+    margin: 3px;
+}
+.infobar {
+    margin-left: 430px;
+    margin-right: 500px;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    padding-left: 20px;
+}
+
+.picture {
+    float: left;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.review{
+    border: 1px solid black;
+    background-color: whitesmoke;
+    padding-left: 20px;
+    margin-left: 430px;
+    margin-right: 500px;
+}
+.rating-locked {
+    pointer-events: none;
+}
