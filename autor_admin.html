@@ -116,8 +116,63 @@
             
         </table>
  
-        <form id="dodavanje-autora">
+        <hr>
 
+
+        <form class="admin-forma" id="dodavanje-autora">
+            <h3 style="text-align: center;">Dodavanje autora</h3>
+            <hr>
+            <p>
+                <label for="name">Ime: </label>
+                <input type="text" id="name" name="ime">
+            </p>
+            <p>
+                <label for="name">Prezime: </label>
+                <input type="text" id="surname" name="prezime">
+            </p>
+            <p>
+                <label for="name">Biografija: </label>
+                <textarea style="max-width: 250px; max-height: 100px;"></textarea>
+            </p>
+            <p>
+                <label for="picture">Slika: </label>
+                <input type="file" id="picture" name="slika">
+            </p>
+            <p>
+                <label for="dob">Datum rodjenja: </label>
+                <input type="date" id="dob" name="datum-rodjenja">
+            </p>
+            <p>
+                <label for="dob">Datum rodjenja: </label>
+                <input type="date" id="dob" name="datum-rodjenja">
+            </p>
+            <p>
+                <label for="status">Status: </label>
+                <select name="status" id="status">
+                    <option value="aktivan">Aktivan</option>
+                    <option value="preminuo">Preminuo</option>
+                    <option value="u-penziji">U penziji</option>
+                </select>
+            </p>
+            <p>
+                <label for="num-awards">Broj osvojenih nagrada: </label>
+                <input type="number" id="num-awards" name="br-nagrada">
+            </p>
+            <p>
+                <label for="num-sales">Broj prodatih primeraka: </label>
+                <input type="number" id="num-sales" name="br-prodatih">
+            </p>
+            <p>
+                <label for="phone-num">Broj telefona menadzera: </label>
+                <input type="phone-num" id="phone-num" name="br-telefona">
+            </p>
+            
+            
+            <section style="text-align: center; padding-bottom: 10px;">
+                <button type="submit">Dodaj autora</button>
+                <button type="reset">Resetuj formu</button>
+            </section>
+            
         </form>
         <form id="brisanje-autora">
 

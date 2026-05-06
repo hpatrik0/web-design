@@ -199,7 +199,16 @@ body {
 
 .admin-bio {
     display: block;
-    height: 50px;
+    height: 80px;
     overflow-y: auto;
 }
 
+.admin-forma {
+    max-width: 80%;
+    margin: 10px auto;
+    border: 1px solid black;
+}
+
+.admin-forma p {
+    padding: 10px;
+}
