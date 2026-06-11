@@ -1,2 +1,3 @@
 *.pdf
 draft.html
+node_modules/
