@@ -226,9 +226,13 @@ body {
 }
 
 .o-korisniku table {
+    width: 60%;
+    margin: 0 auto;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 20;
     border: 1px solid black;
+    text-align: center;
 }
 
 .o-korisniku table #table-data {
@@ -239,12 +243,23 @@ body {
     background-color: tomato;
     padding: 5px;
     border-left: 1px solid black;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .o-korisniku td {
     background-color: antiquewhite;
     border-left: 1px solid black;
     padding: 5px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.o-korisniku td img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    justify-self: center;
 }
 
 .recenzija {
@@ -255,6 +270,10 @@ body {
     background: #fff;
     margin-bottom: 24px;
     align-items: center;
+}
+
+.recenzija:hover {
+    background-color: #9999;
 }
 
 .recenzija div:first-child { /* potrebno je naglasiti :first-child inace puca */
@@ -309,6 +328,10 @@ body {
     width: max-content;
 }
 
+.ocena:hover {
+    background-color: #9999;
+}
+
 .ocena img {
     width: 50px;
     border-bottom: 1px solid #ccc;
@@ -334,4 +357,8 @@ body {
 
 .lista-ocena li {
     flex-shrink: 0;
+}
+
+.table-omotac {
+    overflow-x: auto;
 }
