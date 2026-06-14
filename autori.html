@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body>
+    <body id="lista_autora">
         <nav class="navbar">
             <ul>
                 <li><a href="katalogKnjiga.html">Почетна</a></li>
@@ -16,59 +16,17 @@
         </nav>
 
         <h2 class="title">Листа аутора</h2>
-        <div class="autor-grid">
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 1" src="default_pfp.png" width="150px">
-                    <label>Аутор 1</label>
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 2" src="default_pfp.png" width="150px">
-                    <label>Аутор 2</label>
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 3" src="default_pfp.png" width="150px">
-                    <label>Аутор 3</label>
-
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 4" src="default_pfp.png" width="150px">
-                    <label>Аутор 4</label>
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 5" src="default_pfp.png" width="150px">
-                    <label>Аутор 5</label>
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 6" src="default_pfp.png" width="150px">
-                    <label>Аутор 6</label>
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 7" src="default_pfp.png" width="150px">
-                    <label>Аутор 7</label>
-
-                </div>
-            </a>
-            <a href="autor.html">
-                <div class="autor">
-                    <img alt="Autor 8" src="default_pfp.png" width="150px">
-                    <label>Аутор 8</label>
-                </div>
-            </a>
+        <div id="autor-grid" class="autor-grid">
         </div>
 
-        
+        <template id="autor_slot_template">
+            <a href="autor.html">
+                <div class="autor">
+                    <img id="slika" alt="Autor 1" src="default_pfp.png" width="150px">
+                    <label id="ime">Аутор 1</label>
+                </div>
+            </a>
+        </template>
+        <script type="module" src="src/index.js"></script>
     </body>
 </html>
