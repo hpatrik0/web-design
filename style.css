@@ -440,11 +440,129 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    justify-content: center;           
-    align-items: center;                
+    justify-content: center;          
+    align-items: flex-start;          
+    overflow-y: auto;                 
+    padding: 20px 0;                  
     z-index: 1000;
 }
 
 .modal-overlay.active {
     display: flex;
 }
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    margin: 0;               
+    position: relative;
+    max-height: 90vh;        
+    overflow-y: auto;        
+}
+
+.nav-login-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.nav-login-btn:hover {
+    background-color: hsl(0, 100%, 40%);    
+}
+
+.navbar .nav-link-btn {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.navbar .nav-link-btn:hover {
+    background-color: hsl(0, 100%, 40%);
+}
+
+.modal button[type="submit"] {
+    overflow: hidden;          
+    height: auto;              
+    min-height: unset;
+    max-height: none;
+}
+
+.modal {
+    max-height: 90vh;          
+    overflow-y: auto;          
+}
+
+.modal {
+    overflow-x: hidden;          
+    overflow-y: auto;            
+    word-wrap: break-word;       
+}
+
+.modal-overlay {
+    overflow-x: hidden;          
+}
+
+#authModal .modal {
+    background: #fff;              
+    padding: 24px;                 
+    border: 1px solid #ccc;        
+    border-radius: 8px;
+}
+
+#authModal input,
+#authModal button {
+    box-sizing: border-box;
+}
+
+/* Already present – keep it */
+.admin-lista {
+    table-layout: fixed;
+    width: 100%;                /* full width of its container */
+    max-width: 100%;            /* remove the 80% limit if you want full responsiveness */
+}
+
+/* Force text to wrap inside header and data cells */
+.admin-lista th,
+.admin-lista td {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;           /* prevent content from spilling out */
+}
+
+/* Images inside cells should scale down */
+.admin-lista img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;          
+    flex-wrap: wrap;        
+}
+
+.navbar li:last-child {
+    margin-left: auto;
+}
+

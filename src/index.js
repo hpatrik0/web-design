@@ -183,3 +183,88 @@ const addBtn = document.getElementById('openAddModal');
             modalOverlay.classList.remove('active');
         }
 	});
+
+const editOverlay = document.getElementById('editModal');
+    if (editOverlay) {
+        const closeEdit = editOverlay.querySelector('.close-modal');
+
+        // Listen for clicks on any .edit-btn, even if added later
+		document.addEventListener('click', (e) => {
+			if (e.target.closest('.edit-btn')) {
+				const editOverlay = document.getElementById('editModal');
+				if (editOverlay) editOverlay.classList.add('active');
+			}
+		});
+
+        closeEdit.addEventListener('click', () => editOverlay.classList.remove('active'));
+        editOverlay.addEventListener('click', (e) => {
+            if (e.target === editOverlay) editOverlay.classList.remove('active');
+        });
+    }
+
+const deleteBtn = document.querySelector('.delete-selected-btn');
+if (deleteBtn) {
+    deleteBtn.addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('.table-element input[type="checkbox"]');
+        const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+        if (!anyChecked) {
+            alert('Oзначите бар једног аутора за брисање.');
+            return;
+        }
+
+        const confirmed = confirm('Да ли сте сигурни да желите да обришете означене ауторе?');
+        if (confirmed) {
+            alert('Аутори су обрисани.');
+            checkboxes.forEach(cb => cb.checked = false);
+        }
+    });
+}
+
+    const openAuthBtn = document.getElementById('openAuthModal');
+    const authOverlay = document.getElementById('authModal');
+    if (openAuthBtn && authOverlay) {
+        const closeAuth = authOverlay.querySelector('.close-modal');
+        openAuthBtn.addEventListener('click', () => authOverlay.classList.add('active'));
+        closeAuth.addEventListener('click', () => authOverlay.classList.remove('active'));
+        authOverlay.addEventListener('click', (e) => {
+            if (e.target === authOverlay) authOverlay.classList.remove('active');
+        });
+    }
+
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    loginTab.addEventListener('click', () => {
+        loginTab.style.borderBottom = '2px solid #007bff';
+        loginTab.style.color = '#007bff';
+        registerTab.style.borderBottom = 'none';
+        registerTab.style.color = 'black';
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+    });
+    registerTab.addEventListener('click', () => {
+        registerTab.style.borderBottom = '2px solid #007bff';
+        registerTab.style.color = '#007bff';
+        loginTab.style.borderBottom = 'none';
+        loginTab.style.color = 'black';
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', e => {
+        e.preventDefault();
+        if (e.target.checkValidity()) {
+            alert('Prijava uspešna (simulacija)');
+            authOverlay.classList.remove('active');
+            e.target.reset();
+        } else e.target.reportValidity();
+    });
+    document.getElementById('registerForm').addEventListener('submit', e => {
+        e.preventDefault();
+        if (e.target.checkValidity()) {
+            alert('Registracija uspešna (simulacija)');
+            authOverlay.classList.remove('active');
+            e.target.reset();
+            loginTab.click();   // switch back to login
+        } else e.target.reportValidity();
+    });

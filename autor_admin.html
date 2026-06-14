@@ -13,6 +13,9 @@
                 <li><a href="autori.html">Аутори</a></li>
                 <li><a href="autor_admin.html">Админ: Аутори</a></li>
                 <li><a href="adminKnjige.html">Админ: Књиге</a></li>
+                <li style="margin-left: auto;">
+                    <button id="openAuthModal" class="nav-link-btn">Prijava</button>
+                </li>   
 
             </ul>
         </nav>
@@ -39,119 +42,6 @@
         </table>
  
         <hr>
-
-
-        <form class="admin-forma" id="dodavanje-autora">
-            <h3 class="title" style="border-top: 0;">Додавање аутора</h3>
-            <hr style="margin: 0; border-bottom: 2px solid black;">
-            <p>
-                <label for="name">Име: </label>
-                <input type="text" id="name" name="ime">
-            </p>
-            <p>
-                <label for="name">Презиме: </label>
-                <input type="text" id="surname" name="prezime">
-            </p>
-            <p>
-                <label for="name">Биографија: </label>
-                <textarea style="max-width: 250px; max-height: 100px;"></textarea>
-            </p>
-            <p>
-                <label for="picture">Слика: </label>
-                <input type="file" id="picture" name="slika">
-            </p>
-            <p>
-                <label for="dob">Датум рођења: </label>
-                <input type="date" id="dob" name="datum-rodjenja">
-            </p>
-            <p>
-                <label for="status">Статус: </label>
-                <select name="status" id="status">
-                    <option value="aktivan">Активан</option>
-                    <option value="preminuo">Преминуо</option>
-                    <option value="u-penziji">У пензији</option>
-                </select>
-            </p>
-            <p>
-                <label for="num-awards">Број освојених награда: </label>
-                <input type="number" id="num-awards" name="br-nagrada">
-            </p>
-            <p>
-                <label for="num-sales">Број продатих примерака: </label>
-                <input type="number" id="num-sales" name="br-prodatih">
-            </p>
-            <p>
-                <label for="phone-num">Број телефона менаџера: </label>
-                <input type="phone-num" id="phone-num" name="br-telefona">
-            </p>
-            
-            
-            <section style="text-align: center; padding-bottom: 10px;">
-                <button type="submit">Додај аутора</button>
-                <button type="reset">Поништи</button>
-            </section>
-            
-        </form>
-
-        <form class="admin-forma" id="izmena-autora">
-            <h3 class="title" style="border-top: 0;">Измена аутора</h3>
-            <hr style="margin: 0; border-bottom: 2px solid black;">
-
-            <p>Изаберите аутора за измењивање: 
-                <select>
-                    <option value="autor-1">Аутор 1</option>
-                </select>
-            </p>
-            <hr>
-
-            <p>
-                <label for="name">Име: </label>
-                <input type="text" id="name" name="ime" value="Аутор">
-            </p>
-            <p>
-                <label for="name">Презиме: </label>
-                <input type="text" id="surname" name="prezime" value="Ауторовић">
-            </p>
-            <p>
-                <label for="name">Биографија: </label>
-                <textarea style="max-width: 250px; max-height: 100px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit vel dolor harum minus modi? Sint doloremque fugit exercitationem assumenda, suscipit corporis qui officiis quisquam vero voluptates? Repellendus magnam omnis ullam.</textarea>
-            </p>
-            <p>
-                <label for="picture">Слика: </label>
-                <input type="file" id="picture" name="slika" style="color: transparent;">
-            </p>
-            <p>
-                <label for="dob">Датум рођења: </label>
-                <input type="date" id="dob" name="datum-rodjenja" value="1971-01-01">
-            </p>
-            <p>
-                <label for="status">Статус: </label>
-                <select name="status" id="status" value="aktivan">
-                    <option value="aktivan">Активан</option>
-                    <option value="preminuo">Преминуо</option>
-                    <option value="u-penziji">У пензији</option>
-                </select>
-            </p>
-            <p>
-                <label for="num-awards">Број освојених награда: </label>
-                <input type="number" id="num-awards" name="br-nagrada" value="3">
-            </p>
-            <p>
-                <label for="num-sales">Број продатих примерака: </label>
-                <input type="number" id="num-sales" name="br-prodatih" value="3000">
-            </p>
-            <p>
-                <label for="phone-num">Број телефона менаџера: </label>
-                <input type="phone-num" id="phone-num" name="br-telefona" value="+381661234567">
-            </p>
-            
-            
-            <section style="text-align: center; padding-bottom: 10px;">
-                <button type="submit">Измени аутора</button>
-                <button type="reset">Поништи</button>
-            </section>
-            
-        </form>
 
         <template id="table_row_template">
             <tr class="table-element">
@@ -224,6 +114,92 @@
                 </form>
             </div>
         </div>
+
+        <div class="modal-overlay" id="editModal">
+            <div class="modal admin-forma">
+                <button class="close-modal">&times;</button>
+                <h3 class="title" style="border-top:0;">Измена аутора</h3>
+                <hr style="margin:0; border-bottom:2px solid black;">
+
+                <!-- selection row (optional, you can keep or skip) -->
+                <p>Изаберите аутора за измењивање: 
+                    <select>
+                        <option value="autor-1">Аутор 1</option>
+                    </select>
+                </p>
+                <hr>
+
+                <form id="izmena-autora-modal">
+                    <p><label for="edit-name">Име: </label><input type="text" id="edit-name" value="Аутор"></p>
+                    <p><label for="edit-surname">Презиме: </label><input type="text" id="edit-surname" value="Ауторовић"></p>
+                    <p><label for="edit-bio">Биографија: </label>
+                    <textarea id="edit-bio" style="max-width:250px;max-height:100px;">Lorem ipsum dolor, sit amet consectetur...</textarea></p>
+                    <p><label for="edit-picture">Слика: </label><input type="file" id="edit-picture" style="color:transparent;"></p>
+                    <p><label for="edit-dob">Датум рођења: </label><input type="date" id="edit-dob" value="1971-01-01"></p>
+                    <p><label for="edit-status">Статус: </label>
+                        <select id="edit-status">
+                            <option value="aktivan" selected>Активан</option>
+                            <option value="preminuo">Преминуо</option>
+                            <option value="u-penziji">У пензији</option>
+                        </select>
+                    </p>
+                    <p><label for="edit-awards">Број награда: </label><input type="number" id="edit-awards" value="3"></p>
+                    <p><label for="edit-sales">Број продатих: </label><input type="number" id="edit-sales" value="3000"></p>
+                    <p><label for="edit-phone">Телефон: </label><input type="tel" id="edit-phone" value="+381661234567"></p>
+
+                    <section style="text-align:center; padding-bottom:10px;">
+                        <button type="submit">Измени аутора</button>
+                        <button type="reset">Поништи</button>
+                    </section>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="authModal">
+            <div class="modal" style="background:#fff;">   <!-- ★ white background -->
+                <button class="close-modal">&times;</button>
+
+                <div style="display:flex; margin-bottom:20px; border-bottom:2px solid #ccc;">
+                    <button id="loginTab"
+                            style="flex:1; padding:10px; border:none; background:none;
+                                font-weight:bold; border-bottom:2px solid #007bff; color:#007bff;">
+                        Prijava
+                    </button>
+                    <button id="registerTab"
+                            style="flex:1; padding:10px; border:none; background:none;">
+                        Registracija
+                    </button>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <input type="email" placeholder="Email" required
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="password" placeholder="Lozinka" required minlength="6"
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <button type="submit"
+                            style="display:block; width:100%; padding:10px;">Prijavi se</button>
+                </form>
+
+                <form id="registerForm" novalidate style="display:none;">
+                    <input type="text" placeholder="Ime" required
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="text" placeholder="Prezime" required
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="text" placeholder="Ulica" required
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="email" placeholder="Email" required
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="password" placeholder="Lozinka" required minlength="6"
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <input type="tel" placeholder="Telefon (+381...)" required
+                        pattern="[\+\d][\d\s]{7,}"
+                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
+                    <button type="submit"
+                            style="display:block; width:100%; padding:10px;">Registruj se</button>
+                </form>
+            </div>
+        </div>
+
         <script type="module" src="src/index.js"></script>
     </body>
 </html>
