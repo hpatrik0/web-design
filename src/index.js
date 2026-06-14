@@ -59,6 +59,9 @@ if (full_id) {
 		case 'lista_autora':
 			loadListuAutora();
 			break;
+		case 'admin_autor':
+			loadAdminAutor();
+			break;
 		default:
 			console.log(`Nije pronadjen ID ${id}`);
 	}
@@ -71,6 +74,7 @@ async function loadAutora(id) {
 	let biografija = document.getElementById("biografija");
 	let ime = document.getElementById("ime");
 	let prezime = document.getElementById("prezime");
+	let ime_title = document.getElementById("ime_title");
 	let status = document.getElementById("status");
 	let br_nagrada = document.getElementById("br_nagrada");
 	let br_primeraka = document.getElementById("br_primeraka");
@@ -81,6 +85,7 @@ async function loadAutora(id) {
 	biografija.textContent = data["biografija"];
 	ime.textContent = data["ime"];
 	prezime.textContent = data["prezime"];
+	ime_title.textContent = data["ime"] + " " + data["prezime"];
 	status.textContent = data["status"];
 	br_nagrada.textContent = data["brojOsvojenihNagrada"];
 	br_primeraka.textContent = data["brojProdatihPrimeraka"];
@@ -120,6 +125,61 @@ async function loadListuAutora() {
 	});
 }
 
+async function loadAdminAutor() {
+	const snapshot = await get(ref(db, `autori/`));
+	const data = snapshot.val();
+
+	if (!snapshot.exists()) {
+		container.innerHTML = '<p>Autori nisu pronadjeni.</p>';
+		return;
+	}
+
+	const container = document.getElementById('admin_table');
+	const template = document.getElementById('table_row_template');
+
+	snapshot.forEach(element => {
+		const row_data = element.val();
+		const rowID = element.key;
+
+		const clone = template.content.cloneNode(true);
+
+		clone.getElementById("ime").textContent = row_data["ime"];
+		clone.getElementById("prezime").textContent = row_data["prezime"];
+		clone.getElementById("biografija").textContent = row_data["biografija"];
+		clone.getElementById("slika").src = row_data["slike"][0];
+		clone.getElementById("rodjendan").textContent = row_data["datumRodjenja"];
+		clone.getElementById("status").textContent = row_data["status"];
+		clone.getElementById("br_nagrada").textContent = row_data["brojOsvojenihNagrada"];
+		clone.getElementById("br_primeraka").textContent = row_data["brojProdatihPrimeraka"];
+		clone.getElementById("kontakt").textContent = row_data["kontaktTelefonMenadzera"];
+
+		container.appendChild(clone);
+	});
+
+	return;
+}
+
 function loadKorisnika() {
 	return;
 }
+
+const addBtn = document.getElementById('openAddModal');
+    const modalOverlay = document.getElementById('addModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    // Open modal
+    addBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('active');
+    });
+
+    // Close modal (✕ button)
+    closeBtn.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+    });
+
+    // Close when clicking outside the white box
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            modalOverlay.classList.remove('active');
+        }
+	});
