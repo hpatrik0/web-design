@@ -259,21 +259,3 @@ if (deleteBtn) {
         document.getElementById('registerForm').style.display = 'block';
         document.getElementById('loginForm').style.display = 'none';
     });
-
-    document.getElementById('loginForm').addEventListener('submit', e => {
-        e.preventDefault();
-        if (e.target.checkValidity()) {
-            alert('Prijava uspešna (simulacija)');
-            authOverlay.classList.remove('active');
-            e.target.reset();
-        } else e.target.reportValidity();
-    });
-    document.getElementById('registerForm').addEventListener('submit', e => {
-        e.preventDefault();
-        if (e.target.checkValidity()) {
-            alert('Registracija uspešna (simulacija)');
-            authOverlay.classList.remove('active');
-            e.target.reset();
-            loginTab.click();   // switch back to login
-        } else e.target.reportValidity();
-    });

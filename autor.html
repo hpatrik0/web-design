@@ -98,52 +98,8 @@
             <div id="author-books"></div>
         </section>
 
-        <div class="modal-overlay" id="authModal">
-            <div class="modal" style="background:#fff;">   
-                <button class="close-modal">&times;</button>
-
-                <div style="display:flex; margin-bottom:20px; border-bottom:2px solid #ccc;">
-                    <button id="loginTab"
-                            style="flex:1; padding:10px; border:none; background:none;
-                                font-weight:bold; border-bottom:2px solid #007bff; color:#007bff;">
-                        Prijava
-                    </button>
-                    <button id="registerTab"
-                            style="flex:1; padding:10px; border:none; background:none;">
-                        Registracija
-                    </button>
-                </div>
-
-                <form id="loginForm" novalidate>
-                    <input type="email" placeholder="Email" required
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="password" placeholder="Lozinka" required minlength="6"
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <button type="submit"
-                            style="display:block; width:100%; padding:10px;">Prijavi se</button>
-                </form>
-
-                <form id="registerForm" novalidate style="display:none;">
-                    <input type="text" placeholder="Ime" required
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="text" placeholder="Prezime" required
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="text" placeholder="Ulica" required
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="email" placeholder="Email" required
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="password" placeholder="Lozinka" required minlength="6"
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <input type="tel" placeholder="Telefon (+381...)" required
-                        pattern="[\+\d][\d\s]{7,}"
-                        style="display:block; width:100%; margin-bottom:10px; padding:8px;">
-                    <button type="submit"
-                            style="display:block; width:100%; padding:10px;">Registruj se</button>
-                </form>
-            </div>
-        </div>
         <script src="src/scripts/navbar.js"></script>
-        <script src="src/scripts/login.js"></script>
+        <script type="module" src="src/scripts/login.js"></script>
         <script type="module" src="src/scripts/index.js"></script>
         <script type="module" src="src/scripts/autor.js"></script>
     </body>
