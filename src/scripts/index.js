@@ -60,7 +60,7 @@ if (full_id) {
 			loadListuAutora();
 			break;
 		case 'admin_autor':
-			loadAdminAutor();
+			loadAdminAutorTable();
 			break;
 		default:
 			console.log(`Nije pronadjen ID ${id}`);
@@ -125,7 +125,7 @@ async function loadListuAutora() {
 	});
 }
 
-async function loadAdminAutor() {
+async function loadAdminAutorTable() {
 	const snapshot = await get(ref(db, `autori/`));
 	const data = snapshot.val();
 
@@ -134,6 +134,7 @@ async function loadAdminAutor() {
 		return;
 	}
 
+	console.log(data)
 	const container = document.getElementById('admin_table');
 	const template = document.getElementById('table_row_template');
 
@@ -143,13 +144,13 @@ async function loadAdminAutor() {
 
 		const clone = template.content.cloneNode(true);
 
-		clone.getElementById("ime").textContent = row_data["ime"];
-		clone.getElementById("prezime").textContent = row_data["prezime"];
-		clone.getElementById("biografija").textContent = row_data["biografija"];
+		clone.getElementById("ime").textContent = row_data["ime"] + " " + row_data["prezime"];
+		// clone.getElementById("prezime").textContent = row_data["prezime"];
+		// clone.getElementById("biografija").textContent = row_data["biografija"];
 		clone.getElementById("slika").src = row_data["slike"][0];
 		clone.getElementById("rodjendan").textContent = row_data["datumRodjenja"];
 		clone.getElementById("status").textContent = row_data["status"];
-		clone.getElementById("br_nagrada").textContent = row_data["brojOsvojenihNagrada"];
+		// clone.getElementById("br_nagrada").textContent = row_data["brojOsvojenihNagrada"];
 		clone.getElementById("br_primeraka").textContent = row_data["brojProdatihPrimeraka"];
 		clone.getElementById("kontakt").textContent = row_data["kontaktTelefonMenadzera"];
 
@@ -168,21 +169,29 @@ const addBtn = document.getElementById('openAddModal');
     const closeBtn = document.getElementById('closeModal');
 
     // Open modal
-    addBtn.addEventListener('click', () => {
+	if (addBtn) {
+		addBtn.addEventListener('click', () => {
         modalOverlay.classList.add('active');
     });
+	}
+
+
 
     // Close modal (✕ button)
-    closeBtn.addEventListener('click', () => {
-        modalOverlay.classList.remove('active');
-    });
+	if (closeBtn) {
+		closeBtn.addEventListener('click', () => {
+			modalOverlay.classList.remove('active');
+		});
+	}
 
     // Close when clicking outside the white box
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('active');
-        }
-	});
+	if (modalOverlay) {
+		modalOverlay.addEventListener('click', (e) => {
+			if (e.target === modalOverlay) {
+				modalOverlay.classList.remove('active');
+			}
+		});
+	}
 
 const editOverlay = document.getElementById('editModal');
     if (editOverlay) {

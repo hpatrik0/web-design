@@ -3,40 +3,40 @@
     <head>
         <meta charset="UTF-8">
         <title>Администраторска страница - Аутори</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="src/css/style.css">
+        <link rel="stylesheet" href="src/css/admin_tabela.css">
     </head>
     <body id="admin_autor">
         
-        <nav class="navbar">
-            <ul>
-                <li><a href="katalogKnjiga.html">Почетна</a></li>
-                <li><a href="autori.html">Аутори</a></li>
-                <li><a href="autor_admin.html">Админ: Аутори</a></li>
-                <li><a href="adminKnjige.html">Админ: Књиге</a></li>
-                <li style="margin-left: auto;">
-                    <button id="openAuthModal" class="nav-link-btn">Prijava</button>
-                </li>   
-
-            </ul>
+        <nav id="navbar">
         </nav>
 
         <h3 class="title">Администраторска страница - Аутори</h3>
+
+        <div class="filter-bar">
+        <input type="text" id="authorSearch" placeholder="Претражи по имену...">
+        <select id="statusFilter">
+            <option value="">Сви статуси</option>
+            <option value="Активан">Активан</option>
+            <option value="Преминуо">Преминуо</option>
+            <option value="У пензији">У пензији</option>
+        </select>
+        </div>
+
         <table id="admin_table" class="admin-lista">
-            <tr class="list-head">
-                <th style="width: 40px;">
-                    <button class="delete-selected-btn" title="Обриши означене">🗑️</button>
+              <tr class="list-head">
+                <th style="width:40px;">
+                <button class="delete-selected-btn" title="Обриши означене">
+                    <img src="src/assets/delete.svg" alt="Обриши">
+                </button>
                 </th>
-                <th>Име</th>
-                <th>Презиме</th>
-                <th>Биографија</th>
-                <th>Слике</th>
+                <th>Аутор</th>
                 <th>Датум рођења</th>
                 <th>Статус</th>
-                <th>Број освојених награда</th>
-                <th>Број продатих примерака</th>
-                <th>Контакт телефон менаџера</th>
-                <th style="width: 60px;">
-                    <button id="openAddModal" class="add-btn" title="Додај аутора">+</button>
+                <th>Продато</th>
+                <th>Телефон</th>
+                <th style="width:70px;">
+                <button id="openAddModal" class="add-btn" title="Додај аутора">+</button>
                 </th>
             </tr>
         </table>
@@ -44,121 +44,158 @@
         <hr>
 
         <template id="table_row_template">
-            <tr class="table-element">
-                <td><input type="checkbox" style="width: 18px; height: 18px;"></td>
-                <td id="ime">Аутор 1</td>
-                <td id="prezime">Ауторовић 1</td>
-                <td id="biografija" class="admin-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus laudantium aliquid itaque quibusdam accusantium molestias sequi nobis aspernatur, praesentium dolorem, repellendus aut repudiandae aperiam iusto similique culpa voluptatibus! At, atque?</td>
-                <td><img id="slika" alt="Slika 1" src="default_pfp.png" width="50"></td>
-                <td id="rodjendan">01/01/1971</td>
-                <td id="status">Активан</td>
-                <td id="br_nagrada">3</td>
-                <td id="br_primeraka">3000</td>
-                <td id="kontakt">+381661234567</td>
-                <td style="text-align: center;">
-                    <button class="edit-btn" title="Измени аутора">✏️</button>
+            <tr class="table-element main-row">
+                <td><input type="checkbox" class="row-checkbox"></td>
+                <td class="author-cell">
+                <img id="slika" class="author-thumb" src="default_pfp.png" width="30" height="30" alt="">
+                <span id="ime" class="author-name">Аутор 1 Ауторовић</span>
+                </td>
+                <td id="rodjendan" class="birthday">01.01.1971.</td>
+                <td><span id="status" class="status-badge aktivan">Активан</span></td>
+                <td id="br_primeraka" class="sales">3.000</td>
+                <td id="kontakt" class="phone"><a href="tel:+381661234567">+381 66 123 4567</a></td>
+                <td class="actions-cell">
+                <button class="details-btn" title="Детаљи">⋯</button>
                 </td>
             </tr>
         </template>
 
         <div class="modal-overlay" id="addModal">
-            <div class="modal admin-forma">
-                <button id="closeModal">&times;</button>
-                <h3 class="title" style="border-top:0;">Додавање аутора</h3>
-                <hr style="margin:0; border-bottom:2px solid black;">
-                <form id="dodavanje-autora-modal">
-                    <p>
-                        <label for="name">Име: </label>
-                        <input type="text" id="name" name="ime">
-                    </p>
-                    <p>
-                        <label for="name">Презиме: </label>
-                        <input type="text" id="surname" name="prezime">
-                    </p>
-                    <p>
-                        <label for="name">Биографија: </label>
-                        <textarea style="max-width: 250px; max-height: 100px;"></textarea>
-                    </p>
-                    <p>
-                        <label for="picture">Слика: </label>
-                        <input type="file" id="picture" name="slika">
-                    </p>
-                    <p>
-                        <label for="dob">Датум рођења: </label>
-                        <input type="date" id="dob" name="datum-rodjenja">
-                    </p>
-                    <p>
-                        <label for="status">Статус: </label>
-                        <select name="status" id="status">
-                            <option value="aktivan">Активан</option>
-                            <option value="preminuo">Преминуо</option>
-                            <option value="u-penziji">У пензији</option>
-                        </select>
-                    </p>
-                    <p>
-                        <label for="num-awards">Број освојених награда: </label>
-                        <input type="number" id="num-awards" name="br-nagrada">
-                    </p>
-                    <p>
-                        <label for="num-sales">Број продатих примерака: </label>
-                        <input type="number" id="num-sales" name="br-prodatih">
-                    </p>
-                    <p>
-                        <label for="phone-num">Број телефона менаџера: </label>
-                        <input type="phone-num" id="phone-num" name="br-telefona">
-                    </p>
-                    <section style="text-align:center; padding-bottom:10px;">
-                        <button type="submit">Додај аутора</button>
-                        <button type="reset">Поништи</button>
-                    </section>
+            <div class="modal">
+                <h3 class="title" style="border-top:0; margin-bottom:15px;">Додавање аутора</h3>
+                <form id="dodavanje-autora-modal" class="modal-form">
+                <div class="form-group">
+                    <label>Име *</label>
+                    <input type="text" name="ime" required>
+                </div>
+                <div class="form-group">
+                    <label>Презиме *</label>
+                    <input type="text" name="prezime" required>
+                </div>
+                <div class="form-group">
+                    <label>Биографија</label>
+                    <textarea name="biografija" rows="4" style="resize:vertical;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Слика</label>
+                    <input type="file" name="slika">
+                </div>
+                <div class="form-group">
+                    <label>Датум рођења</label>
+                    <input type="date" name="datum-rodjenja">
+                </div>
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select name="status">
+                    <option value="Активан">Активан</option>
+                    <option value="Преминуо">Преминуо</option>
+                    <option value="У пензији">У пензији</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Број освојених награда</label>
+                    <input type="number" name="br-nagrada" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Број продатих примерака</label>
+                    <input type="number" name="br-prodatih" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Контакт телефон менаџера</label>
+                    <input type="tel" name="br-telefona" placeholder="+381 64 1234567">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Додај аутора</button>
+                    <button type="reset" class="btn-danger">Поништи</button>
+                </div>
                 </form>
             </div>
-        </div>
+            </div>
 
         <div class="modal-overlay" id="editModal">
-            <div class="modal admin-forma">
-                <button class="close-modal">&times;</button>
-                <h3 class="title" style="border-top:0;">Измена аутора</h3>
-                <hr style="margin:0; border-bottom:2px solid black;">
-
-                <!-- selection row (optional, you can keep or skip) -->
-                <p>Изаберите аутора за измењивање: 
-                    <select>
-                        <option value="autor-1">Аутор 1</option>
+            <div class="modal">
+                <h3 class="title" style="border-top:0; margin-bottom:15px;">Измена аутора</h3>
+                <form id="izmena-autora-modal" class="modal-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label>Име *</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Презиме *</label>
+                    <input type="text" id="edit-surname" required>
+                </div>
+                <div class="form-group">
+                    <label>Биографија</label>
+                    <textarea id="edit-bio" rows="4" style="resize:vertical;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Слика</label>
+                    <input type="file" id="edit-picture">
+                </div>
+                <div class="form-group">
+                    <label>Датум рођења</label>
+                    <input type="date" id="edit-dob">
+                </div>
+                <div class="form-group">
+                    <label>Статус</label>
+                    <select id="edit-status">
+                    <option value="Активан">Активан</option>
+                    <option value="Преминуо">Преминуо</option>
+                    <option value="У пензији">У пензији</option>
                     </select>
-                </p>
-                <hr>
-
-                <form id="izmena-autora-modal">
-                    <p><label for="edit-name">Име: </label><input type="text" id="edit-name" value="Аутор"></p>
-                    <p><label for="edit-surname">Презиме: </label><input type="text" id="edit-surname" value="Ауторовић"></p>
-                    <p><label for="edit-bio">Биографија: </label>
-                    <textarea id="edit-bio" style="max-width:250px;max-height:100px;">Lorem ipsum dolor, sit amet consectetur...</textarea></p>
-                    <p><label for="edit-picture">Слика: </label><input type="file" id="edit-picture" style="color:transparent;"></p>
-                    <p><label for="edit-dob">Датум рођења: </label><input type="date" id="edit-dob" value="1971-01-01"></p>
-                    <p><label for="edit-status">Статус: </label>
-                        <select id="edit-status">
-                            <option value="aktivan" selected>Активан</option>
-                            <option value="preminuo">Преминуо</option>
-                            <option value="u-penziji">У пензији</option>
-                        </select>
-                    </p>
-                    <p><label for="edit-awards">Број награда: </label><input type="number" id="edit-awards" value="3"></p>
-                    <p><label for="edit-sales">Број продатих: </label><input type="number" id="edit-sales" value="3000"></p>
-                    <p><label for="edit-phone">Телефон: </label><input type="tel" id="edit-phone" value="+381661234567"></p>
-
-                    <section style="text-align:center; padding-bottom:10px;">
-                        <button type="submit">Измени аутора</button>
-                        <button type="reset">Поништи</button>
-                    </section>
+                </div>
+                <div class="form-group">
+                    <label>Број освојених награда</label>
+                    <input type="number" id="edit-awards" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Број продатих примерака</label>
+                    <input type="number" id="edit-sales" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Контакт телефон менаџера</label>
+                    <input type="tel" id="edit-phone" placeholder="+381 64 1234567">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Измени аутора</button>
+                    <button type="button" class="btn-danger" id="cancelEditBtn">Поништи</button>
+                </div>
                 </form>
             </div>
+            </div>
+
+        <div class="modal-overlay" id="authorDetailsModal">
+        <div class="modal">
+            <h3 class="title" style="border-top:0; margin-bottom:15px;">Детаљи аутора</h3>
+
+            <div class="author-profile">
+            <img id="details-img" src="src/assets/default_pfp.png" alt="Слика аутора" style="width:60px; height:60px; border-radius:50%; object-fit:cover;">
+            <div class="author-info">
+                <p><strong>Име:</strong> <span id="details-ime"></span></p>
+                <p><strong>Презиме:</strong> <span id="details-prezime"></span></p>
+                <p><strong>Датум рођења:</strong> <span id="details-dob"></span></p>
+                <p><strong>Статус:</strong> <span id="details-status" class="status-badge"></span></p>
+                <p><strong>Број освојених награда:</strong> <span id="details-awards"></span></p>
+                <p><strong>Број продатих примерака:</strong> <span id="details-sales"></span></p>
+                <p><strong>Контакт телефон менаџера:</strong> <a id="details-phone" href=""></a></p>
+            </div>
+            </div>
+
+            <div>
+            <strong>Биографија:</strong>
+            <p id="details-bio" style="white-space: pre-wrap; margin-top: 5px;"></p>
+            </div>
+
+            <div class="modal-actions">
+            <button class="edit-btn" id="detailsEditBtn">Измени</button>
+            <button class="delete-btn" id="detailsDeleteBtn">Обриши</button>
+            </div>
+        </div>
         </div>
 
         <div class="modal-overlay" id="authModal">
             <div class="modal" style="background:#fff;">   <!-- ★ white background -->
-                <button class="close-modal">&times;</button>
-
                 <div style="display:flex; margin-bottom:20px; border-bottom:2px solid #ccc;">
                     <button id="loginTab"
                             style="flex:1; padding:10px; border:none; background:none;
@@ -200,6 +237,17 @@
             </div>
         </div>
 
-        <script type="module" src="src/index.js"></script>
+
+        <div class="modal-overlay" id="popupModal">
+        <div class="modal popup-dialog">
+            <p id="popupMessage"></p>
+            <div class="popup-actions" id="popupActions">
+            <!-- Buttons injected by JS -->
+            </div>
+        </div>
+        </div>
+
+        <script src="src/scripts/navbar.js"></script>
+        <script type="module" src="src/scripts/admin_tabela.js"></script>
     </body>
 </html>

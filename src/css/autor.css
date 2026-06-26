@@ -1,0 +1,68 @@
+/* Book list container */
+.book-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Each book row – clickable card */
+.book-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 15px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Left side – image + title below */
+.book-row-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  max-width: 120px;
+  text-align: center;
+}
+
+.book-row-left img {
+  width: 80px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.book-row-left strong {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* Right side – description (truncated to 3 lines) */
+.book-row-right {
+  flex: 1;
+}
+
+.book-row-right p {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;        /* shows max 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
